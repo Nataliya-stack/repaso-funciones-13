@@ -3,36 +3,23 @@ const btnAnalizar = document.getElementById("btn");
 const resultadoTextoLetras = document.getElementById("resultado");
 
 const contarVocalesYConsonantes = (cadena) => {
+    let resultado = ""; 
+
     if (typeof cadena !== "string" || cadena.trim() === "") {
-        return "Por favor, ingrese una cadena de texto válida.";
+        resultado = "Por favor, ingrese una cadena de texto válida.";
+    } else {
+        const texto = cadena.toLowerCase();
+
+        const vocalesEncontradas = texto.match(/[aáeéiíoóuúü]/g);
+        const consonantesEncontradas = texto.match(/[bcdfghjklmnñpqrstvwxyz]/g);
+
+        const numeroVocales = vocalesEncontradas ? vocalesEncontradas.length : 0;
+        const numeroConsonantes = consonantesEncontradas ? consonantesEncontradas.length : 0;
+        
+        resultado = `Vocales: ${numeroVocales}, Consonantes: ${numeroConsonantes}`;
     }
 
-    const texto = cadena.toLowerCase();
-
-    const vocalesEncontradas = texto.match(/[aáeéiíoóuúü]/g);
-    
-    const consonantesEncontradas = texto.match(/[bcdfghjklmnñpqrstvwxyz]/g);
-
-    const numeroVocales = vocalesEncontradas ? vocalesEncontradas.length : 0;
-    const numeroConsonantes = consonantesEncontradas ? consonantesEncontradas.length : 0;
-    //////////////////////////////////////////////////////////////////////////////////////
-    //let numeroVocales = 0;
-        //if (vocalesEncontradas !== null) {
-        //numeroVocales = vocalesEncontradas.length;
-    //}
-    //else {
-    //numeroVocales = 0;
-    //}
-
-    //let numeroConsonantes = 0;
-    //if (consonantesEncontradas !== null) {
-    //   numeroConsonantes = consonantesEncontradas.length;
-    //} 
-    //else {
-    //   numeroConsonantes = 0;
-    //}
-    /////////////////////////////////////////////////////////////////////////////////
-    return `Vocales: ${numeroVocales}, Consonantes: ${numeroConsonantes}`;
+    return resultado; 
 };
 
 btnAnalizar.addEventListener("click", () => {
